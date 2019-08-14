@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddBoard from './components/AddBoard'
+import Board from './containers/Board'
 
 class App extends Component {
    
@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div>
         <div>Welcome to trello board</div>
-        <AddBoard />
+        <Board />
       </div>
     )
   }
