@@ -1,36 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const BoardView = ({ board, addBoard }) => {
-  // console.log(board.createBoard)
-  let textInput = React.createRef();
-  let boards = JSON.parse(localStorage.getItem("boards"))
-  
-  function handleAddBoard() {
-    let input = textInput
-    let title = input.current.value
-    addBoard(title)
-    input.current.value = ''
+class  BoardView extends Component {
+  constructor(props) {
+    super(props)
+    this.textInput = React.createRef();
   }
-  return(
-    <div>
-      <input 
-        placeholder = "board title"
-        type = "text"
-        ref={textInput}
-      />
-      <button onClick={handleAddBoard}>create</button>
-
+  
+  componentDidMount() {
+    console.log(this.props)
+    let boards = JSON.parse(localStorage.getItem("boards"))
+    this.props.getBoards(boards)
+  }
+  
+  handleAddBoard = (e) => {
+    e.preventDefault()
+    let input = this.textInput
+    let title = input.current.value
+    this.props.addBoard(title)
+    input.current.value = '';
+    let boards = JSON.parse(localStorage.getItem("boards"))
+    this.props.getBoards(boards)
+  }
+  render() {
+    console.log(this.props)
+    let boards = this.props.getBoard
+    return(
       <div>
-        {
-          boards && boards.map(({boardId, boardTitle}) => {
-            return <div key={boardId}><h1>{boardTitle}</h1></div>
-          })
-        }
+        <div style={{textAlign: 'center'}}>
+          <form onSubmit={this.handleAddBoard}>
+            <input 
+              placeholder = "board title"
+              type = "text"
+              ref={this.textInput}
+            />
+            <button onClick={this.handleAddBoard}>create</button>
+          </form>
+        </div>
+        <div style={{width: "100%"}}>
+          {
+            boards && boards.map(({boardId, boardTitle}) => {
+ 
+              return (
+                <div key={boardId} style={{width: "33%", float: "left"}}>
+                  <h3>{boardTitle}</h3>
+                  
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
     
 }
-
-
 export default BoardView
