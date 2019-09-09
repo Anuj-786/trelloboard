@@ -1,3 +1,6 @@
 import { addBoard}  from './addBoard';
 import { getBoards } from './getBoards';
-export { addBoard, getBoards }
+import { addTask } from './addTask';
+import { getTasks } from './getTasks';
+
+export { addBoard, getBoards, addTask, getTasks }

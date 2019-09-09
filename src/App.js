@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div style={{textAlign:"center"}}>Welcome to trello board</div>
+        <div style={{textAlign:"center"}}><h3>Welcome to trello board</h3></div>
         <Board />
       </div>
     )

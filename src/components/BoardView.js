@@ -1,49 +1,58 @@
 import React, { Component } from 'react';
+import AddTask from '../containers/AddTask';
 
 class  BoardView extends Component {
   constructor(props) {
     super(props)
-    this.textInput = React.createRef();
+    this.state = {
+      title: ''
+    }
   }
   
   componentDidMount() {
-    console.log(this.props)
     let boards = JSON.parse(localStorage.getItem("boards"))
-    this.props.getBoards(boards)
+    if(boards) {
+      this.props.getBoards(boards)
+    }
+    else {
+      this.props.getBoards([])
+    }
   }
   
+  handleChange = (e) => {
+    this.setState({ title: e.target.value})
+  }
+
   handleAddBoard = (e) => {
     e.preventDefault()
-    let input = this.textInput
-    let title = input.current.value
+    let title = this.state.title
     this.props.addBoard(title)
-    input.current.value = '';
-    let boards = JSON.parse(localStorage.getItem("boards"))
-    this.props.getBoards(boards)
+    this.setState({ title: '' })
   }
+  
   render() {
-    console.log(this.props)
     let boards = this.props.getBoard
     return(
       <div>
-        <div style={{textAlign: 'center'}}>
+        <div style={{ textAlign: 'center', marginBottom: '15px' }}>
           <form onSubmit={this.handleAddBoard}>
             <input 
               placeholder = "board title"
               type = "text"
-              ref={this.textInput}
+              value={this.state.title}
+              onChange={this.handleChange}
             />
-            <button onClick={this.handleAddBoard}>create</button>
+            <button disabled={this.state.title ? false : true } type='submit'>create</button>
           </form>
         </div>
-        <div style={{width: "100%"}}>
+        <div style={{ width: "100%" }}>
           {
-            boards && boards.map(({boardId, boardTitle}) => {
- 
+            boards && boards.map(({ boardId, boardTitle }) => {
+              
               return (
-                <div key={boardId} style={{width: "33%", float: "left"}}>
-                  <h3>{boardTitle}</h3>
-                  
+                <div key={boardId} style={{ boxShadow: '0px 0px 8px 0px', width: "30%", margin: "1%", float: "left",textAlign: 'center', border: '1px solid grey' }}>
+                  <h3 style={{ margin: '0', background: "cornflowerblue", color: '#fff', padding: "8px" }}>{boardTitle}</h3>
+                  <AddTask boardId={boardId}/>
                 </div>
               )
             })

@@ -1,6 +1,6 @@
 import { ADD_BOARD, GET_BOARDS } from '../actions/actionTypes';
 
-export const createBoard = ( state = [], action) => {
+export const createBoard = ( state = [], action ) => {
   switch(action.type) {
     case GET_BOARDS:
       return {
@@ -8,18 +8,10 @@ export const createBoard = ( state = [], action) => {
       }
     case ADD_BOARD:
       let boardTitle = action.boardTitle
-      let id = action.id
-      let boardData = []
-      if(state.boardsData == null ) {
-        boardData.push({boardTitle, id})
-        state.boardsData = boardData
-      }
-      else {
-        boardData = state.boardsData
-        state.boardsData.push({boardTitle, id})
-      }
+      let boardId = action.boardId
+      state.boardsData.push({boardId, boardTitle})
       return {
-        boardsData: boardData
+        boardsData: state.boardsData
       }
 
     default:
