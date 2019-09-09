@@ -11,7 +11,10 @@ class CreateTask extends Component {
   }
   addTask = (e) => {
     e.preventDefault()
-    this.props.addTask(this.state.boardId, this.state.taskTitle)
+    let title = this.state.taskTitle
+    if(title) {
+      this.props.addTask(this.state.boardId, this.state.taskTitle)
+    }
     this.setState({ taskTitle: '' })
   }
   onChange = (e) => {
@@ -42,7 +45,7 @@ class CreateTask extends Component {
           </input>
           <button  
             type="submit"
-            style={{padding: 10, background: 'cornflowerblue', border: 'none', color: '#fff', fontWeight: 600, borderRadius: 20, marginLeft: 5}}
+            style={{padding: 10, background: this.state.taskTitle ? 'cornflowerblue' : '#C0C0C0', border: 'none', color: '#fff', fontWeight: 600, borderRadius: 20, marginLeft: 5}}
           >
           Add Task</button>
         </form>

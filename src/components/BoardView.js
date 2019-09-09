@@ -26,7 +26,9 @@ class  BoardView extends Component {
   handleAddBoard = (e) => {
     e.preventDefault()
     let title = this.state.title
-    this.props.addBoard(title)
+    if(title) {
+      this.props.addBoard(title)
+    }
     this.setState({ title: '' })
   }
   
@@ -46,7 +48,7 @@ class  BoardView extends Component {
             <button 
               disabled={this.state.title ? false : true } 
               type='submit'
-              style={{padding: 10, background: 'cornflowerblue', border: 'none', color: '#fff', fontWeight: 600, borderRadius: 20, marginLeft: 5}}
+              style={{padding: 10, background: this.state.title ? 'cornflowerblue' : '#C0C0C0',border: 'none', color: '#fff', fontWeight: 600, borderRadius: 20, marginLeft: 5}}
             >
               Add Board
             </button>

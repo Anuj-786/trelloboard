@@ -23,7 +23,9 @@ class Comments extends Component {
       e.preventDefault()
       let time = new Date();
       let simpleTime = time.toLocaleTimeString();
-      this.props.addComment(this.props.boardId, this.state.comment, this.props.taskId, simpleTime)
+      if(this.state.comment) {
+        this.props.addComment(this.props.boardId, this.state.comment, this.props.taskId, simpleTime)
+      }
       this.setState({comment: ''})
     }
     render() {
@@ -42,7 +44,7 @@ class Comments extends Component {
               />
               <button 
                 type="submit"
-                style={{background:'cornflowerblue', color: '#fff', border: 'none', padding: '4px', borderRadius: 20, marginLeft: 5}}
+                style={{background: this.state.comment ? 'cornflowerblue' : '#C0C0C0', color: '#fff', border: 'none', padding: '4px', borderRadius: 20, marginLeft: 5}}
               >
                 Add Comment
               </button>
