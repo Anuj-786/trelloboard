@@ -50,7 +50,7 @@ class  BoardView extends Component {
             boards && boards.map(({ boardId, boardTitle }) => {
               
               return (
-                <div key={boardId} style={{ boxShadow: '0px 0px 8px 0px', width: "30%", margin: "1%", float: "left",textAlign: 'center', border: '1px solid grey' }}>
+                <div key={boardId} style={{ boxShadow: '0px 0px 8px 0px', width: "47%", margin: "1%", float: "left",textAlign: 'center', border: '1px solid grey' }}>
                   <h3 style={{ margin: '0', background: "cornflowerblue", color: '#fff', padding: "8px" }}>{boardTitle}</h3>
                   <AddTask boardId={boardId}/>
                 </div>

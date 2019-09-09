@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import AddComments from '../containers/AddComments'
 
 class CreateTask extends Component {
   constructor(props) {
@@ -34,12 +35,15 @@ class CreateTask extends Component {
           <input value={this.state.taskTitle} onChange={this.onChange} placeholder="create new task"></input>
           <button  type="submit">Add Task</button>
         </form>
-        <div style={{height: 100, overflow: 'scroll'}}>
+        <div style={{height: 200, overflow: 'scroll'}}>
          { 
            this.props.allTasks && this.props.allTasks.map( data => {
               return (
                 this.props.boardId == data.boardId ? 
-                  <li key={data.taskId} style={{listStyle: 'none'}}>{data.title}</li>
+                  <div key={data.taskId}>
+                      <li style={{listStyle: 'none'}}>{data.title}</li>
+                      <AddComments taskId={data.taskId} boardId={data.boardId} />                     
+                  </div>
                   : ''
               )
             })
