@@ -11,7 +11,8 @@ export const commentReducer = ( state = [], action ) => {
       let taskId = action.taskId
       let boardId = action.boardId
       let comment = action.comment
-      state.allComments.push({commentId, taskId, boardId, comment})
+      let time = action.time
+      state.allComments.push({commentId, taskId, boardId, comment, time})
       return {
         allComments: state.allComments
       }

@@ -37,12 +37,19 @@ class  BoardView extends Component {
         <div style={{ textAlign: 'center', marginBottom: '15px' }}>
           <form onSubmit={this.handleAddBoard}>
             <input 
-              placeholder = "board title"
+              placeholder = "Add new board"
               type = "text"
               value={this.state.title}
               onChange={this.handleChange}
+              style={{padding: 10, borderRadius: 20, border: '1px solid cornflowerblue', outline: 'none'}}
             />
-            <button disabled={this.state.title ? false : true } type='submit'>create</button>
+            <button 
+              disabled={this.state.title ? false : true } 
+              type='submit'
+              style={{padding: 10, background: 'cornflowerblue', border: 'none', color: '#fff', fontWeight: 600, borderRadius: 20, marginLeft: 5}}
+            >
+              Add Board
+            </button>
           </form>
         </div>
         <div style={{ width: "100%" }}>

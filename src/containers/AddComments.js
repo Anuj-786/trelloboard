@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    addComment: (boardId, comment, taskId) => dispatch(addComment(boardId, comment, taskId)),
+    addComment: (boardId, comment, taskId, time) => dispatch(addComment(boardId, comment, taskId, time)),
     getComments: (comments) => dispatch(getComments(comments))
 }) 
 

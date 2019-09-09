@@ -21,7 +21,9 @@ class Comments extends Component {
     
     addComment = (e) => {
       e.preventDefault()
-      this.props.addComment(this.props.boardId, this.state.comment, this.props.taskId)
+      let time = new Date();
+      let simpleTime = time.toLocaleTimeString();
+      this.props.addComment(this.props.boardId, this.state.comment, this.props.taskId, simpleTime)
       this.setState({comment: ''})
     }
     render() {
@@ -49,17 +51,18 @@ class Comments extends Component {
           <div style={{margin: 10, paddingBottom: 5}}>
             <span style={{fontSize: 12, fontWeight: 600}}>Comments:</span>
             {
-              comments.allComments && comments.allComments.map( ({boardId, comment, taskId, commentId}) => {
+              comments.allComments && comments.allComments.map( ({boardId, comment, taskId, commentId, time}) => {
                 return (
                   taskId === this.props.taskId &&
                   <div key={commentId} style={{marginLeft: 5}}>
-                    <span style={{fontSize: 10}}>{comment}</span>
+                    <span style={{fontSize: 10}}>{comment} ... {time}</span>
                   </div>  
                 ) 
                   
               })
             }
           </div>
+          <hr />
         </div>
       )
     }
